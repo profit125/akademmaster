@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <!-- ====== БАЗОВОЕ SEO ====== -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Илья — Домашний мастер: мелкий и средний ремонт дома и техники</title>
+  <meta name="description" content="Домашний мастер Илья в Екатеринбурге: электрика, сантехника, сборка мебели, компьютерная помощь, ремонт бытовой техники и мелкие работы. Быстро, честно по цене, аккуратно, с гарантией.">
+  <meta name="keywords" content="домашний мастер, екатеринбург, электрика, сантехника, сборка мебели, компьютерная помощь, ремонт техники, мелкий ремонт">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="/">
+  <meta name="theme-color" content="#0ea5e9">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Илья — Домашний мастер">
+  <meta property="og:description" content="Мелкий и средний ремонт дома и техники. Быстро, честно, аккуратно, с гарантией.">
+  <meta property="og:url" content="/">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Фавикон (минималистичный молоток-эмодзи) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -2 32 32'%3E%3Ctext y='24' font-size='24'%3E%F0%9F%9B%A0%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Библиотека для QR-кода (CDN) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --bg-soft: #f7fafc;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #0ea5e9;
+      --primary-contrast: #ffffff;
+      --card: #ffffff;
+      --shadow: 0 8px 24px rgba(2, 6, 23, .10);
+      --radius: 16px;
+      --radius-lg: 20px;
+      --maxw: 1120px;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg: #0b1220;
+        --bg-soft: #0f172a;
+        --text: #e5eefc;
+        --muted: #9fb0c7;
+        --primary: #38bdf8;
+        --primary-contrast: #0b1220;
+        --card: #121a2b;
+        --shadow: 0 8px 28px rgba(0,0,0,.45);
+      }
+    }
+
+    *{ box-sizing:border-box }
+    html{ scroll-behavior:smooth }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--bg-soft),var(--bg) 60%);
+      line-height:1.6;
+    }
+    img{ max-width:100%; height:auto; display:block }
+    a{ color:inherit; text-decoration:none }
+    .container{ max-width:var(--maxw); margin:0 auto; padding:0 20px }
+    h1,h2{ font-family: Montserrat, Inter, sans-serif; line-height:1.2; margin:0 0 14px }
+    h1{ font-size: clamp(28px, 5vw, 48px); letter-spacing:-0.02em }
+    h2{ font-size: clamp(22px, 3.2vw, 34px) }
+    p.lead{ font-size:clamp(16px,2.2vw,20px); color:var(--muted); margin:0 0 22px }
+
+    /* Шапка */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px);
+      background:color-mix(in oklab, var(--bg) 80%, transparent);
+      border-bottom:1px solid color-mix(in oklab, var(--muted) 15%, transparent);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0;
+    }
+    .logo{
+      display:flex; align-items:center; gap:12px; font-weight:700;
+    }
+    .logo .mark{
+      width:40px; height:40px; border-radius:12px; background:var(--primary);
+      display:grid; place-items:center; box-shadow:var(--shadow);
+    }
+    .logo svg{ width:22px; height:22px; color:var(--primary-contrast) }
+    .nav a{ font-weight:600; color:var(--muted) }
+    .nav .links{ display:flex; gap:18px; align-items:center; }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; font-weight:700;
+      padding:12px 18px; border-radius:12px; box-shadow:var(--shadow);
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+      background:var(--primary); color:var(--primary-contrast);
+    }
+    .btn:hover{ transform:translateY(-1px) }
+    .btn.secondary{
+      background:transparent; color:var(--primary); border:2px solid color-mix(in oklab, var(--primary) 70%, #fff 30%);
+      box-shadow:none;
+    }
+    .btn svg{ width:18px; height:18px }
+
+    /* Hero */
+    .hero{ padding:54px 0 24px }
+    .hero-card{
+      background:var(--card); border-radius:var(--radius-lg); padding:32px; box-shadow:var(--shadow);
+      display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:center;
+    }
+    .hero aside{
+      border-radius:var(--radius); padding:22px; background:linear-gradient(135deg, color-mix(in oklab, var(--primary) 12%, transparent), transparent);
+      border:1px solid color-mix(in oklab, var(--muted) 15%, transparent);
+    }
+    .cta-row{ display:flex; flex-wrap:wrap; gap:12px }
+
+    /* Секции */
+    section{ padding:56px 0 }
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(6, minmax(0,1fr));
+    }
+    @media (max-width: 1024px){ .grid{ grid-template-columns: repeat(3,1fr) } }
+    @media (max-width: 640px){ .grid{ grid-template-columns: repeat(1,1fr) } }
+
+    .card{
+      background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);
+      border:1px solid color-mix(in oklab, var(--muted) 14%, transparent);
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .card:hover{ transform:translateY(-3px) }
+    .card h3{ margin:10px 0 6px; font-size:18px }
+    .icon{
+      width:38px; height:38px; border-radius:12px; display:grid; place-items:center;
+      background:color-mix(in oklab, var(--primary) 15%, transparent);
+      color:var(--primary);
+    }
+    .muted{ color:var(--muted) }
+
+    /* Преимущества */
+    .benefits{ display:grid; gap:16px; grid-template-columns: repeat(4, minmax(0,1fr)) }
+    @media (max-width: 900px){ .benefits{ grid-template-columns: repeat(2,1fr) } }
+    @media (max-width: 580px){ .benefits{ grid-template-columns: 1fr } }
+    .benefit{ display:flex; gap:14px; align-items:flex-start; background:var(--card); padding:18px; border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid color-mix(in oklab,var(--muted) 14%, transparent) }
+
+    /* Процесс */
+    .steps{ display:grid; gap:14px; grid-template-columns: repeat(4, minmax(0,1fr)) }
+    @media (max-width: 900px){ .steps{ grid-template-columns: repeat(2,1fr) } }
+    @media (max-width: 580px){ .steps{ grid-template-columns: 1fr } }
+    .step{ position:relative; background:var(--card); padding:20px 20px 20px 56px; border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid color-mix(in oklab,var(--muted) 14%, transparent) }
+    .step::before{
+      content:attr(data-step);
+      position:absolute; left:16px; top:16px; width:28px; height:28px; border-radius:9px;
+      display:grid; place-items:center; font-weight:700; background:var(--primary); color:var(--primary-contrast);
+      box-shadow:0 4px 12px color-mix(in oklab, var(--primary) 35%, transparent);
+    }
+
+    /* Контакты */
+    .contact-wrap{ display:grid; gap:20px; grid-template-columns: 1.2fr .8fr }
+    @media (max-width: 860px){ .contact-wrap{ grid-template-columns: 1fr } }
+    .contact-card{ background:var(--card); padding:22px; border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid color-mix(in oklab,var(--muted) 14%, transparent) }
+    #qrcode, .qr-fallback{ width:180px; height:180px; border-radius:14px; background:var(--bg-soft); display:grid; place-items:center; overflow:hidden; border:1px dashed color-mix(in oklab, var(--muted) 25%, transparent) }
+
+    /* Липкая CTA снизу (моб.) */
+    .sticky-cta{
+      position:fixed; left:0; right:0; bottom:0; z-index:60; padding:10px 14px;
+      display:none; gap:10px; background:color-mix(in oklab, var(--bg) 95%, transparent); border-top:1px solid color-mix(in oklab,var(--muted) 15%, transparent);
+      backdrop-filter:saturate(140%) blur(8px);
+    }
+    @media (max-width: 720px){
+      .sticky-cta{ display:flex }
+      main{ padding-bottom:84px } /* чтобы контент не прятался под панелью */
+    }
+
+    /* Плавающий CTA (десктоп) */
+    .fab{
+      position:fixed; right:20px; bottom:20px; z-index:55; display:flex; flex-direction:column; gap:10px;
+    }
+    @media (max-width: 720px){ .fab{ display:none } }
+    .fab .btn{ padding:12px 14px; border-radius:14px }
+
+    /* Якоря отступ */
+    :target{ scroll-margin-top:90px }
+
+    /* Мелочи */
+    .sep{ height:1px; background:color-mix(in oklab,var(--muted) 15%, transparent); margin:24px 0 }
+    @media (prefers-reduced-motion: reduce){
+      *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important }
+    }
+  </style>
+
+  <!-- JSON-LD микроразметка -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Илья — Домашний мастер",
+    "description": "Мелкий и средний ремонт дома и техники: электрика, сантехника, сборка мебели, компьютерная помощь, ремонт бытовой техники.",
+    "url": "/",
+    "telephone": "+7 962 313-44-00",
+    "priceRange": "₽₽",
+    "sameAs": ["https://t.me/akadem_help"]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Плавающий CTA (desktop) -->
+  <div class="fab" aria-label="Быстрые контакты">
+    <a class="btn" href="tel:+79623134400" aria-label="Позвонить Илье">
+      <!-- phone -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.09 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.18a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.6.63A2 2 0 0 1 22 16.92z"/></svg>
+      Позвонить
+    </a>
+    <a class="btn secondary" href="https://t.me/akadem_help" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+      <!-- telegram -->
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.036 15.08 8.9 18.746c.36 0 .516-.154.703-.338l1.69-1.62 3.504 2.57c.643.355 1.103.168 1.28-.594l2.318-10.86h-.001c.206-.966-.349-1.343-.979-1.108L3.63 9.7c-.944.368-.93.897-.161 1.136l3.92 1.222 9.106-5.747c.429-.28.82-.126.498.154"/></svg>
+      Telegram
+    </a>
+  </div>
+
+  <!-- Шапка -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Главная навигация">
+      <a class="logo" href="#hero" aria-label="На главную">
+        <span class="mark" aria-hidden="true">
+          <!-- ЛОГО: дом + ключ -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="2" d="M3 10.5 12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5H4.5A1.5 1.5 0 0 1 3 19.5v-9z"/>
+            <path stroke-width="2" d="M9.5 17a2.5 2.5 0 1 0 0-5M14 15l4-4"/>
+          </svg>
+        </span>
+        <span>Илья — Домашний мастер</span>
+      </a>
+      <nav class="links">
+        <a href="#services">Услуги</a>
+        <a href="#benefits">Преимущества</a>
+        <a href="#process">Как работаем</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <a class="btn" href="tel:+79623134400" aria-label="Позвонить сейчас">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.09 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.18a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.6.63A2 2 0 0 1 22 16.92z"/></svg>
+        Позвонить
+      </a>
+    </div>
+  </header>
+
+  <main id="hero">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div>
+            <h1>Илья — Домашний мастер</h1>
+            <p class="lead">Мелкий и средний ремонт дома и техники</p>
+            <div class="cta-row">
+              <a class="btn" href="tel:+79623134400" aria-label="Позвонить Илье">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.09 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.18a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.6.63A2 2 0 0 1 22 16.92z"/></svg>
+                Позвонить
+              </a>
+              <a class="btn secondary" href="https://t.me/akadem_help" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.036 15.08 8.9 18.746c.36 0 .516-.154.703-.338l1.69-1.62 3.504 2.57c.643.355 1.103.168 1.28-.594l2.318-10.86h-.001c.206-.966-.349-1.343-.979-1.108L3.63 9.7c-.944.368-.93.897-.161 1.136l3.92 1.222 9.106-5.747c.429-.28.82-.126.498.154"/></svg>
+                Написать в Telegram
+              </a>
+            </div>
+          </div>
+          <aside>
+            <strong>Быстрая помощь рядом с вами</strong>
+            <p class="muted">Оставьте заявку — в 3 шага согласуем детали и приступим к работе. Честные цены и гарантия качества.</p>
+            <ul class="muted" style="margin:0; padding-left:18px">
+              <li>Екатеринбург и ближайшие районы</li>
+              <li>Выезд в день обращения при возможности</li>
+              <li>Без предоплаты, оплата по факту</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" aria-labelledby="services-title">
+      <div class="container">
+        <h2 id="services-title">Услуги</h2>
+        <p class="muted" style="margin-bottom:16px">Популярные направления работ. Если не нашли нужное — уточните по телефону или в Telegram.</p>
+        <div class="grid">
+          <!-- 1 Электрика -->
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M13 2 3 14h7l-1 8L21 8h-7l-1-6z"/></svg>
+            </div>
+            <h3>Электрика</h3>
+            <p class="muted">Розетки и выключатели, светильники, автоматы, поиск и устранение неисправностей.</p>
+          </article>
+          <!-- 2 Сантехника -->
+          <article class="card">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M3 10h6a4 4 0 0 1 8 0v8M7 14h10M5 18h14M19 10h2a2 2 0 0 1 2 2v6"/></svg>
+            </div>
+            <h3>Сантехника</h3>
+            <p class="muted">Смесители, сифоны, унитазы, протечки, посудомойки/стиральные машины.</p>
+          </article>
+          <!-- 3 Сборка/мебель -->
+          <article class="card">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M3 7h18M6 7v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7M9 12h6"/></svg>
+            </div>
+            <h3>Сборка / мебель</h3>
+            <p class="muted">Сборка шкафов, кроватей и комодов, крепление полок, карнизов, ТВ.</p>
+          </article>
+          <!-- 4 Компьютерная помощь -->
+          <article class="card">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="12" rx="2" ry="2" stroke-width="2"/><path stroke-width="2" d="M7 20h10"/></svg>
+            </div>
+            <h3>Компьютерная помощь</h3>
+            <p class="muted">Настройка Windows, драйверов, Wi-Fi, диагностика, ускорение ПК/ноутбука.</p>
+          </article>
+          <!-- 5 Бытовая техника -->
+          <article class="card">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="3" width="16" height="18" rx="2" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/></svg>
+            </div>
+            <h3>Бытовая техника</h3>
+            <p class="muted">Установка/подключение, мелкий ремонт и обслуживание техники дома.</p>
+          </article>
+          <!-- 6 Мелкий ремонт -->
+          <article class="card">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M14 7l-9 9-3 1 1-3 9-9M17 3l4 4M11 9l4 4"/></svg>
+            </div>
+            <h3>Мелкий ремонт</h3>
+            <p class="muted">Разные бытовые задачи «муж на час»: от дверных ручек до плинтусов.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section id="benefits" aria-labelledby="benefits-title">
+      <div class="container">
+        <h2 id="benefits-title">Почему выбирают меня</h2>
+        <div class="benefits">
+          <div class="benefit">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M3 12h6l3 8 4-16 2 8h3"/></svg>
+            </div>
+            <div><strong>Быстро</strong><div class="muted">Выезд в кратчайшие сроки, минимальные ожидания.</div></div>
+          </div>
+          <div class="benefit">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-width="2" d="M7 12h10M7 12a5 5 0 0 0 10 0"/></svg>
+            </div>
+            <div><strong>Честно по цене</strong><div class="muted">Фиксируем стоимость до начала работ — без сюрпризов.</div></div>
+          </div>
+          <div class="benefit">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M4 20l8-8 4 4 4-10"/></svg>
+            </div>
+            <div><strong>Аккуратно</strong><div class="muted">Чистота на объекте и внимательное отношение к деталям.</div></div>
+          </div>
+          <div class="benefit">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div><strong>Гарантия</strong><div class="muted">Даём гарантийный срок и поддерживаем после работ.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Как работаем -->
+    <section id="process" aria-labelledby="process-title">
+      <div class="container">
+        <h2 id="process-title">Как работаем</h2>
+        <div class="steps">
+          <div class="step" data-step="1">Описываете задачу — по телефону или в Telegram.</div>
+          <div class="step" data-step="2">Согласуем цену и время приезда.</div>
+          <div class="step" data-step="3">Приезжаю и выполняю работу.</div>
+          <div class="step" data-step="4">Оплата по факту, выдаю гарантию.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" aria-labelledby="contacts-title">
+      <div class="container">
+        <h2 id="contacts-title">Контакты</h2>
+        <div class="contact-wrap">
+          <div class="contact-card">
+            <p><strong>Телефон:</strong> <a href="tel:+79623134400">+7 (962) 313-44-00</a></p>
+            <p><strong>Telegram:</strong> <a href="https://t.me/akadem_help" target="_blank" rel="noopener">t.me/akadem_help</a></p>
+            <div class="sep"></div>
+            <div class="cta-row">
+              <a class="btn" href="tel:+79623134400" aria-label="Позвонить">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.09 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.18a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.6.63A2 2 0 0 1 22 16.92z"/></svg>
+                Позвонить
+              </a>
+              <a class="btn secondary" href="https://t.me/akadem_help" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.036 15.08 8.9 18.746c.36 0 .516-.154.703-.338l1.69-1.62 3.504 2.57c.643.355 1.103.168 1.28-.594l2.318-10.86h-.001c.206-.966-.349-1.343-.979-1.108L3.63 9.7c-.944.368-.93.897-.161 1.136l3.92 1.222 9.106-5.747c.429-.28.82-.126.498.154"/></svg>
+                Написать в Telegram
+              </a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <p class="muted" style="margin-top:0">Сканируйте QR-код, чтобы перейти в Telegram:</p>
+            <div id="qrcode" role="img" aria-label="QR-код на Telegram"></div>
+            <noscript>
+              <div class="qr-fallback">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Ft.me%2Fakadem_help" alt="QR-код перехода в Telegram">
+              </div>
+            </noscript>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Липкая панель CTA для мобильных -->
+  <div class="sticky-cta" role="region" aria-label="Быстрые действия">
+    <div class="container" style="display:flex; gap:10px; padding:0">
+      <a class="btn" style="flex:1" href="tel:+79623134400" aria-label="Позвонить">Позвонить</a>
+      <a class="btn secondary" style="flex:1" href="https://t.me/akadem_help" target="_blank" rel="noopener" aria-label="Написать в Telegram">Telegram</a>
+    </div>
+  </div>
+
+  <!-- Футер -->
+  <footer style="padding:28px 0; border-top:1px solid color-mix(in oklab,var(--muted) 15%, transparent)">
+    <div class="container" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between">
+      <small class="muted">© <span id="y"></span> Илья — Домашний мастер</small>
+      <nav style="display:flex; gap:14px; flex-wrap:wrap">
+        <a class="muted" href="#hero">Вверх</a>
+        <a class="muted" href="#services">Услуги</a>
+        <a class="muted" href="#benefits">Преимущества</a>
+        <a class="muted" href="#process">Как работаем</a>
+        <a class="muted" href="#contacts">Контакты</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Небольшой JS: год в футере + генерация QR + защита от ошибок CDN -->
+  <script>
+    // Текущий год
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Аккуратная инициализация QR-кода с fallback на картинку
+    (function initQR(){
+      var container = document.getElementById('qrcode');
+      try{
+        if (window.QRCode && container){
+          new QRCode(container, {
+            text: "https://t.me/akadem_help",
+            width: 180, height: 180,
+            correctLevel: QRCode.CorrectLevel.H
+          });
+        } else {
+          throw new Error("QRCode lib not ready");
+        }
+      } catch(e){
+        var img = document.createElement('img');
+        img.loading = "lazy";
+        img.width = 180; img.height = 180;
+        img.alt = "QR-код на Telegram";
+        img.src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent("https://t.me/akadem_help");
+        container.innerHTML = "";
+        container.appendChild(img);
+      }
+    })();
+  </script>
+</body>
+</html>
